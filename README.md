@@ -43,3 +43,5 @@ $ hdfs dfs -put input/exercises-data/populacaoLA/populacaoLA.csv /user/santana/d
 #### Resultado:
 <img src="img/hdfs-dfs-put-populacao.png" alt="Envia arquivo local para HDFS">
 
+
+continua...
