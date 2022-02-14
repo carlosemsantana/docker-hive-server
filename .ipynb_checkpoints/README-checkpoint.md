@@ -50,16 +50,10 @@ $ hdfs dfs -put input/exercises-data/populacaoLA/populacaoLA.csv /user/santana/d
 <img src="img/hdfs-dfs-put-populacao.png" alt="Envia arquivo local para HDFS">
 
 
-2. Lista o banco de dados 
 
-```Python
-$ docker exec -it namenode bash
-$ hdfs dfs -put input/exercises-data/populacaoLA/populacaoLA.csv /user/santana/data/populacao
 
-```
 
-#### Resultado:
-<img src="img/hdfs-dfs-put-populacao.png" alt="Envia arquivo local para HDFS">
+
 
 ```python
 
