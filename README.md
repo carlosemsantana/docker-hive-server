@@ -54,12 +54,66 @@ $ hdfs dfs -put input/exercises-data/populacaoLA/populacaoLA.csv /user/santana/d
 
 ```Python
 $ docker exec -it namenode bash
-$ hdfs dfs -put input/exercises-data/populacaoLA/populacaoLA.csv /user/santana/data/populacao
+$ beeline -u jdbc:hive2://localhost:10000
+$ show databases
 
 ```
 
 #### Resultado:
-<img src="img/hdfs-dfs-put-populacao.png" alt="Envia arquivo local para HDFS">
+<img src="img/beeline.png" alt="Lista o banco de dados">
+
+
+3.  Criar o banco de dados <nome> 
+
+```Python
+$ docker exec -it namenode bash
+$ beeline -u jdbc:hive2://localhost:10000
+$ create database populacaoLA
+
+```
+
+#### Resultado:
+<img src="img/create-database.png" alt="Criar o banco de dados">
+
+
+4.  Criar a Tabela Hive no BD pessoa
+
+<img src="img/tabela.png" alt="Criar tabela no banco de dados">
+
+
+```Python
+$ create table pessoa (
+                zip_code INT,
+                total_population INT, 
+                median_age INT, 
+                total_males INT, 
+                total_females INT,   
+                total_household_size FLOAT)
+                
+  ROW FORMAT DELIMITED
+  FIELDS TERMINATED BY '\t';
+  STORED AS TEXTFILE
+  tBLPROPERTIES ("skip.header.line.count"="1");
+
+```
+
+#### Resultado:
+<img src="img/create-table-pop.png" alt="Criar tabela">
+
+
+5. Visualizar a descrição da tabela pop
+
+```Python
+$ desc formatted pessoa
+
+
+```
+
+#### Resultado:
+<img src="img/desc-formatted-table.png" alt="Criar o banco de dados">
+
+
+continua...
 
 ```python
 
