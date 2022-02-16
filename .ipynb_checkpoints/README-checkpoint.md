@@ -1,5 +1,7 @@
 # Apache Hive™
 
+Este artigo foi inspirado no conteúdo do curso de Engenharia de Dados, módulo Big Data Foundations na Semantix Academy e documentação do projeto Apache Hive™.
+
 Apache Hive™ é um software de Data Warehouse desenvolvido em cima do Apache Hadoop para consulta e análise de dados. O Hive oferece uma interface semelhante ao SQL para consulta de dados em diferentes bancos de dados e sistemas de arquivos integrados ao Hadoop.
 
 O Apache Hive™ facilita a leitura, consulta, gravação e gerenciamento de grandes conjuntos de dados distribuídos.
@@ -82,16 +84,18 @@ $ create database populacaoLA
 
 
 ```Python
-$ create table pessoa (
+$ create table pop (
                 zip_code INT,
                 total_population INT, 
-                median_age INT, 
+                median_age FLOAT, 
                 total_males INT, 
                 total_females INT,   
-                total_household_size FLOAT)
+                total_household_size FLOAT,
+                average_household_size FLOAT)
                 
   ROW FORMAT DELIMITED
-  FIELDS TERMINATED BY '\t';
+  FIELDS TERMINATED BY ','
+  LINES TERMINATED BY '\n'
   STORED AS TEXTFILE
   tBLPROPERTIES ("skip.header.line.count"="1");
 
@@ -104,7 +108,7 @@ $ create table pessoa (
 5. Visualizar a descrição da tabela pop
 
 ```Python
-$ desc formatted pessoa
+$ desc formatted pop
 
 
 ```
@@ -113,8 +117,34 @@ $ desc formatted pessoa
 <img src="img/desc-formatted-table.png" alt="Criar o banco de dados">
 
 
-continua...
+6. Carregar o arquivo do HDFS “/user/aluno/nome/data/população/populacaoLA.csv” para a tabela Hive pop
 
-```python
+```Python
+$ load data inpath '/user/santana/data/populacao/populacaoLA.csv' overwrite into table pop;
+$ select * from pop limit 10;
 
 ```
+
+#### Resultado:
+<img src="img/desc-select.png" alt="Carregar o arquivo do HDFS">
+
+
+
+
+<!-- #region -->
+Pronto!
+
+Chegou o final da jornada exploratória para conhecermos um pouquinho do Hive, tem muito mais comandos e funcionalidades que não foram exploradas aqui, consulte a documentação de referência.
+
+
+Espero ter contribuido com o seu desenvolvimento de alguma forma.
+
+
+[Carlos Eugênio](https://github.com/carlosemsantana)
+<!-- #endregion -->
+
+### Referências
+
+
+* [https://academy.semantix.com.br](https://academy.semantix.com.br)
+* [https://hive.apache.org/](https://hive.apache.org/)
